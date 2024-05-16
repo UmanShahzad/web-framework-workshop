@@ -14,4 +14,5 @@ const patch = (ele, oldVnode, newVnode) => {
 
 const root = n('div', { id: 'app' }, ['Hello World!']);
 
-document.body.innerHTML = createElement();
+document.body.innerHTML = createElement(root);
+
