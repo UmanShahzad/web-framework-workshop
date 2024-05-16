@@ -5,14 +5,11 @@ const n = (tag, props, children) => ({
 });
 
 const createElement = (vnode) => {
-    // TODO
+    const ele = document.createElement(vnode.tag);
+    return ele;
 }
 
-const patch = (ele, oldVnode, newVnode) => {
-    // TODO
-}
+const vroot = n('div', { id: 'app' }, ['Hello World!']);
 
-const root = n('div', { id: 'app' }, ['Hello World!']);
-
-document.body.innerHTML = createElement(root);
+document.body.innerHTML = createElement(vroot);
 
