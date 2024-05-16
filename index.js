@@ -5,11 +5,27 @@ const n = (tag, props, children) => ({
 });
 
 const createElement = (vnode) => {
-    const ele = document.createElement(vnode.tag);
-    return ele;
+  if (typeof vnode === 'string') {
+    return document.createTextNode(vnode);
+  }
+  const el = document.createElement(vnode.tag);
+  if (vnode.props) {
+    Object.entries(vnode.props).forEach(([name, value]) => {
+      el[name] = value;
+    });
+  }
+  if (vnode.children) {
+    vnode.children.forEach(child => {
+      el.appendChild(createElement(child));
+    });
+  }
+  return el;
 }
 
 const vroot = n('div', { id: 'app' }, ['Hello World!']);
+const root = document.querySelector('#root');
+const vrootCreated = createElement(vroot);
 
-document.body.innerHTML = createElement(vroot);
+console.log(root, vrootCreated);
+root.appendChild(vrootCreated);
 
